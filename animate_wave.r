@@ -6,7 +6,8 @@ library(dplyr)
 library(gganimate)
 
 # set different formulas that will be used in the animation
-set.seed(6288)
+seed <- 6288
+set.seed(seed)
 
 # include a specific formula, for example:
 my_formula <- list(
@@ -24,10 +25,10 @@ df %>% select(x, y) %>%
 
 
 # make a file name
-file_name <- generate_filename(seed)
+file_name <- generate_filename(seed, "png")
 
 # make an animation
-df_animate %>%
+df_t1 %>%
   group_by(state) %>%
   ggplot(ggplot2::aes(x = x, y = y)) +
   scale_fill_identity() +
@@ -43,4 +44,4 @@ animate(p_genart,
         height = 600)
 
 # save as gif
-anim_save("generativeart.gif")
+anim_save("generativeartwave.gif")

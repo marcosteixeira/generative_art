@@ -56,7 +56,7 @@ output_plot <- plot #+ theme(plot.background = element_rect(fill = "#f8d0b0"))
 print(output_plot)
 
 # save an image
-save_file = FALSE
+save_file = TRUE
 if (save_file){
   file_name <- paste0(format(Sys.time(), "%Y-%m-%d-%H-%M"), 
                       "_center_", y[1], y[2], "_radius_", x, "_npoints_", n,".png")

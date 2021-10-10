@@ -4,9 +4,12 @@ library(ggplot2)
 library(tidyr)
 library(dplyr)
 library(gganimate)
+# library(tidyverse)
+library(stringr)
 
 # set seed
-set.seed(4182)
+seed <- 4321
+set.seed(seed)
 
 # formula for new x, y coordinates
 formula <- list(
@@ -48,4 +51,4 @@ animate(p_genart,
         height = 600)
 
 # save as gif
-anim_save("image_generation.gif")
+anim_save(str_interp("image_generation${seed}.gif"))

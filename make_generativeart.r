@@ -16,9 +16,9 @@ LOGFILE_PATH <- paste0(LOGFILE_DIR, LOGFILE)
 generativeart::setup_directories(IMG_DIR, IMG_SUBDIR, IMG_SUBDIR2, LOGFILE_DIR)
 
 # set seed
-#seed <- generate_seeds(1)
+seed <- generate_seeds(1)
 #set.seed(seed)
-#set.seed(3257)
+set.seed(seed)
 # include a specific formula, for example:
 my_formula <- list(
   x = quote(runif(1, -1, 1) * x_i^3 - sin(y_i^2)),
@@ -29,7 +29,7 @@ my_formula <- list(
 df <- generate_data(my_formula)
 
 # make a file name
-file_name <- generate_filename(seed)
+file_name <- generate_filename(seed, "png")
 
 # make a plot
 polar = TRUE
@@ -53,7 +53,7 @@ output_plot <- plot + theme(plot.background = element_rect(fill = "#f8d0b0"))
 print(output_plot)
 
 # save an image
-save_file = FALSE
+save_file = TRUE
 if (save_file){
   # add new image to log file
   logfile <- check_logfile_existence()
