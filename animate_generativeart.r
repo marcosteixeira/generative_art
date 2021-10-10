@@ -10,6 +10,7 @@ library(stringr)
 #!/usr/bin/env Rscript
 args = commandArgs(trailingOnly=TRUE)
 seed <- strtoi(args[2])
+rare <- strtoi(args[3])
 seed
 # this function makes generative art
 make_frame <- function(seed = 4182, state = 1, formula) {
@@ -55,9 +56,8 @@ game_expanded <- function(color) {
   }
 }
 
-# backgrounds = c("#aa33aa", "#4400ee", "#ffffee", "#338899", "#bb0022")
-# backgrounds = c("#66bb22", "#442233", "#333311", "#007799", "#ffbb44")
 source("palettes.r")
+source("rares.r")
 backgrounds = get_palette(seed)
 whites = c();
 blacks = c();
@@ -97,17 +97,16 @@ for(i in sample(1:9, 5)) {
 frame1 = make_frame(seed, 1, selected_formulas[[1]])
 frame2 = make_frame(seed, 2, selected_formulas[[2]])
 frame3 = make_frame(seed, 3, selected_formulas[[3]])
-frame4 = make_frame(seed, 4, selected_formulas[[4]])
-frame5 = make_frame(seed, 5, selected_formulas[[5]])
-df_animate = c(frame1, frame2, frame3, frame4, frame5)
 
 
 if (length(backgrounds) == 3) {
   rbind(frame1, frame2, frame3) -> df_animate
 } else {
+  frame4 = make_frame(seed, 4, selected_formulas[[4]])
   if (length(backgrounds) == 4) {
     rbind(frame1, frame2, frame3, frame4) -> df_animate
   } else {
+    frame5 = make_frame(seed, 5, selected_formulas[[5]])
     rbind(frame1, frame2, frame3, frame4, frame5) -> df_animate
   }
 }
